@@ -10,7 +10,7 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :yahoo_finanza, key: :value
+config :yahoo_finanza, markets: ["nyse", "nasdaq", "amex", "sp_500", "dow_jones"]
 #
 # And access this configuration in your application as:
 #

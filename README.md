@@ -17,3 +17,15 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
           [applications: [:yahoo_finanza]]
         end
 
+## Usage
+
+Getting symbol list for a market
+
+```elixir
+YahooFinanza.Symbol.symbols "market" ## => {:ok, ["symbol1", "symbol2", ..., "symboln"]}
+```
+
+Note: The available markets are: "amex", "nyse", "sp_500", "dow_jones", "nasdaq"
+To add a new market or listing simply add the yaml file to the markets directory
+and add the market or listing name to the config.exs file markets list variable
+

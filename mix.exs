@@ -14,7 +14,7 @@ defmodule YahooFinanza.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
+    [applications: [:logger, :yaml_elixir],
      mod: {YahooFinanza, []}]
   end
 
@@ -28,6 +28,6 @@ defmodule YahooFinanza.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{ :yaml_elixir, "~> 1.0.0" }, { :yamerl, github: "yakaz/yamerl" }]
   end
 end
