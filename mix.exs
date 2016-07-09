@@ -14,7 +14,7 @@ defmodule YahooFinanza.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
+    [applications: [:logger, :httpoison],
      mod: {YahooFinanza, []}]
   end
 
@@ -28,6 +28,6 @@ defmodule YahooFinanza.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:csv, "~> 1.4.2"}]
+    [{:csv, "~> 1.4.2"}, {:httpoison, "~> 0.9.0"}, {:json, "~> 0.3.0"}]
   end
 end

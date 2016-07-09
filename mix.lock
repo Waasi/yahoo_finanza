@@ -1,4 +1,12 @@
-%{"csv": {:hex, :csv, "1.4.2"},
+%{"certifi": {:hex, :certifi, "0.4.0"},
+  "csv": {:hex, :csv, "1.4.2"},
+  "hackney": {:hex, :hackney, "1.6.0"},
+  "httpoison": {:hex, :httpoison, "0.9.0"},
+  "idna": {:hex, :idna, "1.2.0"},
+  "json": {:hex, :json, "0.3.3"},
+  "metrics": {:hex, :metrics, "1.0.1"},
+  "mimerl": {:hex, :mimerl, "1.0.2"},
   "parallel_stream": {:hex, :parallel_stream, "1.0.5"},
+  "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0"},
   "yamerl": {:git, "https://github.com/yakaz/yamerl.git", "ae810a808817d9482b4628ae3e20d746e3729fe0", []},
   "yaml_elixir": {:hex, :yaml_elixir, "1.0.0"}}
