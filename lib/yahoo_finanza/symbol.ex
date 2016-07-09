@@ -47,6 +47,8 @@ defmodule YahooFinanza.Symbol do
   end
 
   defp read_market_symbols(market) do
-    YamlElixir.read_from_file("config/markets/#{market}.yml")["#{market}_symbols"]
+    File.stream!("config/markets/#{market}.csv")
+    |> CSV.decode
+    |> Enum.flat_map(fn row -> row end)
   end
 end

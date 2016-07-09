@@ -1,2 +1,4 @@
-%{"yamerl": {:git, "https://github.com/yakaz/yamerl.git", "ae810a808817d9482b4628ae3e20d746e3729fe0", []},
+%{"csv": {:hex, :csv, "1.4.2"},
+  "parallel_stream": {:hex, :parallel_stream, "1.0.5"},
+  "yamerl": {:git, "https://github.com/yakaz/yamerl.git", "ae810a808817d9482b4628ae3e20d746e3729fe0", []},
   "yaml_elixir": {:hex, :yaml_elixir, "1.0.0"}}
