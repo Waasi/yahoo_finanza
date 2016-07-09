@@ -7,27 +7,32 @@ defmodule YahooFinanza.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps,
+     description: description,
+     package: package]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
     [applications: [:logger, :httpoison],
      mod: {YahooFinanza, []}]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
     [{:csv, "~> 1.4.2"}, {:httpoison, "~> 0.9.0"}, {:json, "~> 0.3.0"}]
+  end
+
+  defp description do
+    "This is a simple Yahoo Finance module capable
+    of getting current data for several symbols in
+    bulk as well as individually. Additional features
+    include getting stock symbols filtered by stock market."
+  end
+
+  defp package do
+    [name: :yahoo_finanza,
+     files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+     maintainers: ["Eric Santos"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/Waasi/yahoo_finanza"}]
   end
 end

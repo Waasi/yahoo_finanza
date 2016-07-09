@@ -6,7 +6,7 @@ defmodule YahooFinanza do
 
     children = [
       # Define workers and child supervisors to be supervised
-      # worker(YahooFinanza.Quote, []),
+      worker(YahooFinanza.Quote, []),
       worker(YahooFinanza.Symbol, []),
     ]
 
