@@ -47,7 +47,7 @@ defmodule YahooFinanza.Symbol do
   def init(_) do
     table = :ets.new(:symbols_table, [:protected, :named_table])
 
-    Application.get_env(:yahoo_finanza, :markets)
+    read_market_symbols("markets")
     |> Enum.each(fn(market) ->
       :ets.insert(table, {market, read_market_symbols(market)})
     end)
