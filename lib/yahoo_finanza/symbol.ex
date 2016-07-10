@@ -47,7 +47,7 @@ defmodule YahooFinanza.Symbol do
   def init(_) do
     table = :ets.new(:symbols_table, [:protected, :named_table])
 
-    Application.get_env(:yahoo_finanza, :markets)
+    read_market_symbols("markets")
     |> Enum.each(fn(market) ->
       :ets.insert(table, {market, read_market_symbols(market)})
     end)
@@ -74,7 +74,7 @@ defmodule YahooFinanza.Symbol do
   end
 
   defp read_market_symbols(market) do
-    File.stream!("config/markets/#{market}.csv")
+    File.stream!("#{Path.absname("deps/yahoo_finanza")}/config/markets/#{market}.csv")
     |> CSV.decode
     |> Enum.flat_map(fn row -> row end)
   end
