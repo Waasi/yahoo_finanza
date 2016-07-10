@@ -9,7 +9,9 @@ defmodule YahooFinanza.Mixfile do
      start_permanent: Mix.env == :prod,
      deps: deps,
      description: description,
-     package: package]
+     source_url: "https://github.com/Waasi/yahoo_finanza",
+     package: package,
+     docs: [extras: ["README.md"]]]
   end
 
   def application do
@@ -18,7 +20,10 @@ defmodule YahooFinanza.Mixfile do
   end
 
   defp deps do
-    [{:csv, "~> 1.4.2"}, {:httpoison, "~> 0.9.0"}, {:json, "~> 0.3.0"}]
+    [{:csv, "~> 1.4.2"},
+     {:httpoison, "~> 0.9.0"},
+     {:json, "~> 0.3.0"},
+     {:ex_doc, "~> 0.12", only: :dev}]
   end
 
   defp description do
@@ -30,7 +35,7 @@ defmodule YahooFinanza.Mixfile do
 
   defp package do
     [name: :yahoo_finanza,
-     files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+     files: ["lib", "config", "mix.exs", "README*", "LICENSE*"],
      maintainers: ["Eric Santos"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/Waasi/yahoo_finanza"}]

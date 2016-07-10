@@ -1,9 +1,36 @@
 defmodule YahooFinanza.Symbol do
   use GenServer
 
+  @moduledoc """
+  The Symbol Module implements the GenServer Behavior and
+  is a Supervised Worker. This module provides methods to
+  get the list of symbols for a given market or index. Also
+  allows the easy addition of new lists of symbols.
+
+  ## Methods
+      symbols/1
+
+  ## Markets
+      NYSE. Referenced as the string "nyse"
+      AMEX. Referenced as the string "amex"
+      NASDAQ. Referenced as the string "nasdaq"
+      SP 500. Referenced as the string "sp_500"
+      Dow Jones. Referenced as the string "dow_jones"
+  """
+
   ###
   # Client API
   ###
+
+  @doc """
+  The symbols method accepts a string containing the name
+  of the market or index and returns the list of symbols
+  for that market.
+
+  ## Example
+      iex> YahooFinanza.Symbol.symbols "nyse"\n
+      {:ok, ["symbol1", "symbol2", ..., "symboln"]}
+  """
 
   def symbols(market) do
     GenServer.call(__MODULE__, {:symbols, market})
