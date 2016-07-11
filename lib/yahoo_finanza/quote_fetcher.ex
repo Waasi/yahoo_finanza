@@ -8,39 +8,28 @@ defmodule YahooFinanza.QuoteFetcher do
   """
 
   @doc """
-  The get/1 method accepts a string containing the stock
-  symbol and returns the quote for the given symbol from
-  the Yahoo Finance API or an error if an invalid symbol
-  was given.
+  The get/1 method accepts a list of strings containing
+  stock symbols and returns the quotes for the given symbols
+  from the Yahoo Finance API
 
-  ## Examples
-      iex> YahooFinanza.QuoteFetcher.get "AAPL"\n
-      {:ok, %{"Symbol" => "AAPL", "Ask" => "119.5", ...}}
-
-      iex> YahooFinanza.Quote.fetch_quote "i don't exist"\n
-      {:error, "invalid symbol"}
+  ## Example
+      iex> YahooFinanza.QuoteFetcher.get ["AAPL"]\n
+      {:ok, [%{"Symbol" => "AAPL", "Ask" => "119.5", ...}]}
   """
 
-  def get(symbol) do
-    symbol |> url_for |> HTTPoison.get |> parse_quote
+  def get(symbols) do
+    symbols |> Enum.join(",") |> url_for |> HTTPoison.get |> parse_quote
   end
 
-  defp url_for(symbol) do
+  defp url_for(symbols) do
     "http://query.yahooapis.com/v1/public/yql?q=" <>
-    "select * from yahoo.finance.quotes where symbol in ('#{symbol}')" <>
+    "select * from yahoo.finance.quotes where symbol in ('#{symbols}')" <>
     "&format=json&diagnostics=true&env=http://datatables.org/alltables.env"
     |> URI.encode
   end
 
   defp parse_quote({:ok, %HTTPoison.Response{body: body, status_code: 200}}) do
     json = body |> JSON.decode!
-    qte = json["query"]["results"]["quote"]
-
-    case qte["Ask"] do
-      nil ->
-        {:error, "invalid symbol"}
-      _ ->
-        {:ok, qte}
-    end
+    json["query"]["results"]["quote"]
   end
 end
