@@ -3,7 +3,7 @@ defmodule YahooFinanza.Mixfile do
 
   def project do
     [app: :yahoo_finanza,
-     version: "0.2.0",
+     version: "0.2.1",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -23,7 +23,8 @@ defmodule YahooFinanza.Mixfile do
     [{:csv, "~> 1.4.2"},
      {:httpoison, "~> 0.9.0"},
      {:json, "~> 0.3.0"},
-     {:ex_doc, "~> 0.12", only: :dev}]
+     {:ex_doc, "~> 0.12", only: :dev},
+     {:benchfella, "~> 0.3.0", only: :dev}]
   end
 
   defp description do

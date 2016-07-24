@@ -23,7 +23,7 @@ defmodule YahooFinanza.Quote do
   be ignored.
 
   ## Example
-      iex> YahooFinanza.Quote.fetch_quote ["AAPL", "FB", "I don't exist"]\n
+      iex> YahooFinanza.Quote.fetch ["AAPL", "FB", "I don't exist"]\n
       {:ok, [%{"Symbol" => "AAPL", "Ask" => "119.5", ...}, %{"Symbol" => "FB", "Ask" => "130.5", ...} }
 
   """
@@ -41,7 +41,7 @@ defmodule YahooFinanza.Quote do
   end
 
   def handle_call({:quotes, symbols}, _from, state) do
-    {:reply, {:ok, quotes_for(symbols)}, state}
+    {:reply, {:ok, quotes_for(symbols)}, state, 5000}
   end
 
   ###
@@ -49,9 +49,7 @@ defmodule YahooFinanza.Quote do
   ###
 
   defp quotes_for(symbols) do
-    symbols |> workloads |>
-    Enum.map(&Task.async(fn -> QuoteFetcher.get(&1) end)) |>
-    Enum.map(&Task.await/1) |> strip
+    symbols |> workloads |> Enum.map(&distribute/1) |> Enum.map(&collect/1) |> strip
   end
 
   defp strip(quotes) do
@@ -61,5 +59,14 @@ defmodule YahooFinanza.Quote do
 
   defp workloads(symbols) do
     symbols |> Enum.chunk(50, 50, [])
+  end
+
+  defp distribute(workload) do
+    me = self
+    spawn_link(fn -> (send me, {self, QuoteFetcher.get(workload)}) end)
+  end
+
+  defp collect(pid) do
+    receive do {^pid, quotes} -> quotes end
   end
 end

@@ -6,7 +6,7 @@ This is a simple Yahoo Finance module capable of getting current data for severa
   1. Add yahoo_finanza to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:yahoo_finanza, "~> 0.2.0"}]
+          [{:yahoo_finanza, "~> 0.2.1"}]
         end
 
   2. Ensure yahoo_finanza is started before your application:
@@ -43,7 +43,7 @@ quote["Ask"] ## => 12.0
 Getting stock quote for multiple symbols
 
 ```elixir
-{:ok, quotes} = YahooFinanza.Quote.fetch_quotes(["AAPL", "FB"]) ## => {:ok, [%{"Symbol" => "AAPL", ... }, %{"Symbol" => "FB", ... }]}
+{:ok, quotes} = YahooFinanza.Quote.fetch(["AAPL", "FB"]) ## => {:ok, [%{"Symbol" => "AAPL", ... }, %{"Symbol" => "FB", ... }]}
 ```
 
 Each quote can be accessed like so:
@@ -56,7 +56,7 @@ Combining the Symbol and Quote Modules
 
 ```elixir
 {:ok, nyse_symbols} = YahooFinanza.Symbol.symbols "nyse"
-{:ok, nyse_quotes} = nyse_symbols |> Enum.take(100) |> YahooFinanza.Quote.fetch_quotes
+{:ok, nyse_quotes} = nyse_symbols |> Enum.take(100) |> YahooFinanza.Quote.fetch
 ```
 
 ## Contributing
