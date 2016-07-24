@@ -6,7 +6,7 @@ This is a simple Yahoo Finance module capable of getting current data for severa
   1. Add yahoo_finanza to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:yahoo_finanza, "~> 0.2.0"}]
+          [{:yahoo_finanza, "~> 0.2.1"}]
         end
 
   2. Ensure yahoo_finanza is started before your application:

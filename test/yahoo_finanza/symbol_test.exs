@@ -5,7 +5,7 @@ defmodule YahooFinanza.SymbolTest do
 
   test ".symbols for nyse market" do
     {:ok, symbols} = Symbol.symbols("nyse")
-    assert symbols |> Enum.count == 3291
+    assert symbols |> Enum.count == 2777
   end
 
   test ".symbols for nasdaq market" do
@@ -15,7 +15,7 @@ defmodule YahooFinanza.SymbolTest do
 
   test ".symbols for amex market" do
     {:ok, symbols} = Symbol.symbols("amex")
-    assert symbols |> Enum.count == 396
+    assert symbols |> Enum.count == 355
   end
 
   test ".symbols for dow_jones index" do
@@ -25,7 +25,7 @@ defmodule YahooFinanza.SymbolTest do
 
   test ".symbols for sp_500 index" do
     {:ok, symbols} = Symbol.symbols("sp_500")
-    assert symbols |> Enum.count == 503
+    assert symbols |> Enum.count == 438
   end
 
   test ".symbols for invalid market" do
