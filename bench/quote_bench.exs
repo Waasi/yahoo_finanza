@@ -6,11 +6,10 @@ defmodule YahooFinanza.QuoteBench do
 
   setup_all do
     Symbol.start_link
-    Quote.start_link
     HTTPoison.start
 
     {:ok, symbols} = Symbol.symbols "nyse"
-    {:ok, symbols |> Enum.take(1)}
+    {:ok, symbols}
   end
 
   before_each_bench symbols do

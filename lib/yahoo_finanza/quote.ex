@@ -9,7 +9,6 @@ defmodule YahooFinanza.Quote do
       fetch/1
   """
 
-  use GenServer
   alias YahooFinanza.QuoteFetcher
 
   ###
@@ -29,19 +28,7 @@ defmodule YahooFinanza.Quote do
   """
 
   def fetch(symbols) do
-    GenServer.call(__MODULE__, {:quotes, symbols})
-  end
-
-  ###
-  # GenServer API
-  ###
-
-  def start_link do
-    GenServer.start_link(__MODULE__, [], name: __MODULE__)
-  end
-
-  def handle_call({:quotes, symbols}, _from, state) do
-    {:reply, {:ok, quotes_for(symbols)}, state, 5000}
+    {:ok, quotes_for(symbols)}
   end
 
   ###
@@ -49,16 +36,17 @@ defmodule YahooFinanza.Quote do
   ###
 
   defp quotes_for(symbols) do
-    symbols |> workloads |> Enum.map(&distribute/1) |> Enum.map(&collect/1) |> strip
+    symbols |> workloads
+    |> Enum.map(&distribute/1)
+    |> Enum.map(&collect/1) |> strip
   end
 
   defp strip(quotes) do
-    quotes |> List.flatten |>
-    Enum.filter(fn item -> item["Ask"] != nil end)
+    quotes |> List.flatten
   end
 
   defp workloads(symbols) do
-    symbols |> Enum.chunk(50, 50, [])
+    symbols |> Enum.chunk(25, 25, [])
   end
 
   defp distribute(workload) do
