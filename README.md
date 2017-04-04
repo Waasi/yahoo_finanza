@@ -1,4 +1,6 @@
 # YahooFinanza
+[![Build Status](https://travis-ci.org/Waasi/yahoo_finanza.svg?branch=master)](https://travis-ci.org/Waasi/yahoo_finanza)
+
 This is a simple Yahoo Finance module capable of getting current data for several symbols in bulk as well as individually. Additional features include getting stock symbols filtered by stock market.
 
 ## Installation
@@ -6,7 +8,7 @@ This is a simple Yahoo Finance module capable of getting current data for severa
   1. Add yahoo_finanza to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:yahoo_finanza, "~> 0.2.1"}]
+          [{:yahoo_finanza, "~> 0.2.3"}]
         end
 
   2. Ensure yahoo_finanza is started before your application:

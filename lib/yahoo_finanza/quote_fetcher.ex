@@ -25,7 +25,7 @@ defmodule YahooFinanza.QuoteFetcher do
   defp url_for(symbols) do
     "http://query.yahooapis.com/v1/public/yql?q=" <>
     "select * from yahoo.finance.quotes where symbol in ('#{symbols}')" <>
-    "&format=json&diagnostics=true&env=http://datatables.org/alltables.env"
+    "&format=json&diagnostics=true&env=store://datatables.org/alltableswithkeys"
     |> URI.encode
   end
 

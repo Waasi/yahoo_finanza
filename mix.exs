@@ -3,7 +3,7 @@ defmodule YahooFinanza.Mixfile do
 
   def project do
     [app: :yahoo_finanza,
-     version: "0.2.1",
+     version: "0.2.3",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
