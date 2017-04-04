@@ -22,7 +22,7 @@ defmodule YahooFinanza.Mixfile do
   defp deps do
     [{:csv, "~> 1.4.2"},
      {:httpoison, "~> 0.9.0"},
-     {:json, "~> 0.3.0"},
+     {:poison, "~> 2.0"},
      {:ex_doc, "~> 0.12", only: :dev},
      {:benchfella, "~> 0.3.0", only: :dev}]
   end

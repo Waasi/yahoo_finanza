@@ -6,8 +6,7 @@ defmodule YahooFinanza do
 
     children = [
       # Define workers and child supervisors to be supervised
-      worker(YahooFinanza.Quote, []),
-      worker(YahooFinanza.Symbol, []),
+      worker(YahooFinanza.Symbol, [])
     ]
 
     opts = [strategy: :one_for_one, name: YahooFinanza.Supervisor]

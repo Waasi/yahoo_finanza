@@ -17,8 +17,10 @@ defmodule YahooFinanza.QuoteTest do
   end
 
   test ".fetch for one invalid symbol" do
-    result = ["whatever"] |> Quote.fetch
-    assert result == {:ok, []}
+    {:ok, response} = ["whatever"] |> Quote.fetch
+    result = response |> List.first
+
+    assert result["Ask"] == nil
   end
 
   test ".fetch for multiple valid symbols", %{symbols: symbols} do
@@ -28,6 +30,6 @@ defmodule YahooFinanza.QuoteTest do
 
   test ".fetch for multiple valid symbols and one invalid symbol", %{symbols: symbols} do
     {:ok, result} = Enum.take(symbols, 4) ++ ["whatever"]  |> Quote.fetch
-    assert (result |> Enum.count) == 4
+    assert (result |> Enum.count) == 5
   end
 end

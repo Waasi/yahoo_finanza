@@ -18,7 +18,8 @@ defmodule YahooFinanza.QuoteFetcher do
   """
 
   def get(symbols) do
-    symbols |> Enum.join(",") |> url_for |> HTTPoison.get |> parse_quote
+    url = symbols |> Enum.join(",") |> url_for
+    url |> HTTPoison.get |> parse_quote
   end
 
   defp url_for(symbols) do
@@ -29,7 +30,8 @@ defmodule YahooFinanza.QuoteFetcher do
   end
 
   defp parse_quote({:ok, %HTTPoison.Response{body: body, status_code: 200}}) do
-    json = body |> JSON.decode!
+    json = body |> Poison.decode!
     json["query"]["results"]["quote"]
   end
+  defp parse_quote({_status, _response}), do: %{}
 end
