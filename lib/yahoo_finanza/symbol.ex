@@ -74,7 +74,10 @@ defmodule YahooFinanza.Symbol do
   end
 
   defp read_market_symbols(market) do
-    File.stream!("config/markets/#{market}.csv")
+    ~w(.. .. config markets #{market}.csv)
+    |> Path.join
+    |> Path.expand(__DIR__)
+    |> File.stream!
     |> CSV.decode
     |> Enum.flat_map(fn row -> row end)
   end
