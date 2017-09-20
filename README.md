@@ -7,22 +7,26 @@ This is a simple Yahoo Finance module capable of getting current data for severa
 
   1. Add yahoo_finanza to your list of dependencies in `mix.exs`:
 
+        ```elixir
         def deps do
           [{:yahoo_finanza, "~> 0.2.3"}]
         end
+        ```
 
   2. Ensure yahoo_finanza is started before your application:
 
+        ```elixir
         def application do
           [applications: [:yahoo_finanza]]
         end
+        ```
 
 ## Usage
 
 Getting symbol list for a market
 
 ```elixir
-YahooFinanza.Symbol.symbols "market" ## => {:ok, ["symbol1", "symbol2", ..., "symboln"]}
+YahooFinanza.Symbol.symbols_for "market" ## => {:ok, ["symbol1", "symbol2", ..., "symboln"]}
 ```
 
 Note: The available markets are: "amex", "nyse", "sp_500", "dow_jones", "nasdaq"
@@ -57,7 +61,7 @@ apple = quotes |> List.first ## => %{"Symbol" => "AAPL", ... }
 Combining the Symbol and Quote Modules
 
 ```elixir
-{:ok, nyse_symbols} = YahooFinanza.Symbol.symbols "nyse"
+{:ok, nyse_symbols} = YahooFinanza.Symbol.symbols_for "nyse"
 {:ok, nyse_quotes} = nyse_symbols |> Enum.take(100) |> YahooFinanza.Quote.fetch
 ```
 

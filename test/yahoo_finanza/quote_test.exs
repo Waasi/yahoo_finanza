@@ -5,7 +5,7 @@ defmodule YahooFinanza.QuoteTest do
   alias YahooFinanza.Symbol
 
   setup do
-    {:ok, symbols} = Symbol.symbols("nyse")
+    {:ok, symbols} = Symbol.symbols_for("nyse")
     {:ok, symbols: symbols}
   end
 

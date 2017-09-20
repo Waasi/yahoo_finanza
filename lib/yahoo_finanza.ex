@@ -5,7 +5,6 @@ defmodule YahooFinanza do
     import Supervisor.Spec, warn: false
 
     children = [
-      # Define workers and child supervisors to be supervised
       worker(YahooFinanza.Symbol, [])
     ]
 
