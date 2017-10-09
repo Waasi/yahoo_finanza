@@ -9,7 +9,7 @@ This is a simple Yahoo Finance module capable of getting current data for severa
 
         ```elixir
         def deps do
-          [{:yahoo_finanza, "~> 0.2.3"}]
+          [{:yahoo_finanza, "~> 0.3.0"}]
         end
         ```
 
@@ -77,4 +77,5 @@ Combining the Symbol and Quote Modules
 
 1. Daniel Berkompas (@danielberkompas)
 2. Benjamin Tan Wei Hao
-2. Johnny Mejias (@datajohnny)
+3. Johnny Mejias (@datajohnny)
+4. Thiago Araújo (@thiagoa)
