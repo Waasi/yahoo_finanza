@@ -8,22 +8,22 @@ defmodule YahooFinanza.SymbolBench do
   end
 
   bench ".symbols for nyse" do
-    Symbol.symbols "nyse"
+    Symbol.symbols_for "nyse"
   end
 
   bench ".symbols for amex" do
-    Symbol.symbols "amex"
+    Symbol.symbols_for "amex"
   end
 
   bench ".symbols for nasdaq" do
-    Symbol.symbols "nasdaq"
+    Symbol.symbols_for "nasdaq"
   end
 
   bench ".symbols for sp_500" do
-    Symbol.symbols "sp_500"
+    Symbol.symbols_for "sp_500"
   end
 
   bench ".symbols for dow_jones" do
-    Symbol.symbols "dow_jones"
+    Symbol.symbols_for "dow_jones"
   end
 end

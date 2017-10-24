@@ -7,3 +7,4 @@ erl_crash.dump
 doc/
 bench/snapshots/
 mix.lock
+.DS_Store

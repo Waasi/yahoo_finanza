@@ -36,25 +36,17 @@ defmodule YahooFinanza.Quote do
   ###
 
   defp quotes_for(symbols) do
-    symbols |> workloads
-    |> Enum.map(&distribute/1)
-    |> Enum.map(&collect/1) |> strip
-  end
-
-  defp strip(quotes) do
-    quotes |> List.flatten
+    symbols
+    |> workloads()
+    |> Task.async_stream(QuoteFetcher, :get, [])
+    |> Enum.map(&strip/1)
+    |> List.flatten()
   end
 
   defp workloads(symbols) do
-    symbols |> Enum.chunk(25, 25, [])
+    Stream.chunk(symbols, 50, 50, [])
   end
 
-  defp distribute(workload) do
-    me = self
-    spawn_link(fn -> (send me, {self, QuoteFetcher.get(workload)}) end)
-  end
-
-  defp collect(pid) do
-    receive do {^pid, quotes} -> quotes end
-  end
+  defp strip({:ok, quotes}), do: quotes
+  defp strip(_), do: nil
 end

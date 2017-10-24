@@ -3,14 +3,14 @@ defmodule YahooFinanza.Mixfile do
 
   def project do
     [app: :yahoo_finanza,
-     version: "0.2.3",
-     elixir: "~> 1.2",
+     version: "0.3.0",
+     elixir: "~> 1.5",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps,
-     description: description,
+     deps: deps(),
+     description: description(),
      source_url: "https://github.com/Waasi/yahoo_finanza",
-     package: package,
+     package: package(),
      docs: [extras: ["README.md"]]]
   end
 
@@ -20,9 +20,8 @@ defmodule YahooFinanza.Mixfile do
   end
 
   defp deps do
-    [{:csv, "~> 1.4.2"},
-     {:httpoison, "~> 0.9.0"},
-     {:poison, "~> 2.0"},
+     [{:httpoison, "~> 0.13"},
+     {:poison, "~> 3.1"},
      {:ex_doc, "~> 0.12", only: :dev},
      {:benchfella, "~> 0.3.0", only: :dev}]
   end
